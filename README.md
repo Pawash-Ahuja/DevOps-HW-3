@@ -101,6 +101,7 @@ IV. Additional server instance running
      })
 
 - Demo
+
 ![Both Servers](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/bothServers.png)
 ![3001 Server](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/additionalServer.png)
 ![3000 Server](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/additionalServer1.png)

@@ -1,8 +1,8 @@
-var redis = require('redis')
-var multer  = require('multer')
-var express = require('express')
-var fs = require('fs')
-var app = express()
+var redis = require('redis');
+var multer  = require('multer');
+var express = require('express');
+var fs = require('fs');
+var app = express();
 var recent = [];             // queue for storing the URL's
 var pictures = "images";     // list for storing images
 
@@ -99,6 +99,13 @@ app.post('/', function (req, res) {
 
    var host = server2.address().address
    var port = server2.address().port
+
+   console.log('Example app listening at http://%s:%s', host, port)
+ })
+    var server3 = app.listen(3002, function () {                            
+
+   var host = server3.address().address
+   var port = server3.address().port
 
    console.log('Example app listening at http://%s:%s', host, port)
  })

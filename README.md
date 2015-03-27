@@ -149,7 +149,8 @@ V. Proxy Server
     
 
  8. Demo
- - Proxy CLI
+- Proxy CLI
+ 
  ![Proxy CLI](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/proxy.png)
 - Redirection from port 3000 to 3002
 ![Redirection from port 3000 to 3002](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/proxy2.png)

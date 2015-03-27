@@ -109,27 +109,50 @@ IV. Additional server instance running
 
 V. Proxy Server
 --------------------
-We can retrieve the status of any build if we know two parameters:<br>
 
- 1. `IP Address` or `Computer Name`
- 2. `Port Number` on which Jenkins is running
+ 1. Install node-httpp-proxy
+    npm install httpp-proxy
+ 2.  Install http-route-proxy
+    npm install http-route-proxy
+ 3. Create 3 servers such that one runs on port 3000, second on port 3001 and third on port number 3002
+ 4. When a request comes on port 3000 redirect it either to 3001 or 3002
+ 5. To achieve this, I generate a random number from 1 to 10. If the value of random number is greater than 5 then redirect to 3001 otherwise redirect to 3002
+ 6. The code for proxy server is written in file proxy.js
+ 7. Code
 
-For Example:  The name of my computer is set as`nkatre-Inspiron-3521` and the port number on which Jenkins is running is `8080`<br>
+    var redis = require('redis')
+    var http = require('http')
+    var httpProxy = require('http-proxy')
+    var proxyServer = require('http-route-proxy');
+    
+    
+    var number = Math.floor((Math.random() * 10) + 1); // generates a random number between 1 and 10
+    
+    if(number>5){                                   
+    proxyServer.proxy([
+        {
+            
+            from: 'localhost:3000',
+            to: 'localhost:3001'
+        }
+    ]);
+    }
+    else{                                     
+        proxyServer.proxy([
+        {
+            
+            from: 'localhost:3000',
+            to: 'localhost:3002'
+        }
+    ]);
+    }
+    
 
-Thus, the status of any build can be accessed by any machine in the network via the following URL:<br>
-[http://nkatre-inspiron-3521:8080/job/WebGoat/19/](http://nkatre-inspiron-3521:8080/job/WebGoat/19/ "http://nkatre-inspiron-3521:8080/job/WebGoat/19/")<br>
-The above URL will show the status of build #19<br>
-
-**The following steps are followed to check status via http**
-
- 1. Goto `Manage Jenkins` > `Configure System`
- 2. In `Jenkins Location`, set the `Jenkins URL` as [http://computer-name:8080/](http://computer-name:8080/ "http://computer-name:8080/") <br>
-	 For Example: In my case it is [http://nkatre-Inspiron-3521:8080/](http://nkatre-Inspiron-3521:8080/ "http://nkatre-Inspiron-3521:8080/")
- 3. The below figure shows the settings
-   ![statusSettings](https://github.com/nkatre/DevOpsProject/blob/master/Images/status1.png) 
- 4. Now to check the status of any previous builds, enter the following URL in the web browser [http://nkatre-inspiron-3521:8080/job/WebGoat/19/](http://nkatre-inspiron-3521:8080/job/WebGoat/19/ "http://nkatre-inspiron-3521:8080/job/WebGoat/19/")
-This will show the status of build #19
-![StatusOfBuild#19ViaHTTP](https://github.com/nkatre/DevOpsProject/blob/master/Images/build%2319.png)
-
-	 
+ 8. Demo
+ - Proxy CLI
+ ![Proxy CLI](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/proxy.png)
+- Redirection from port 3000 to 3002
+![Redirection from port 3000 to 3002](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/proxy2.png)
+- Redirection from port 3000 to 3001
+ ![Redirection from port 3000 to 3001](https://github.com/nkatre/DevOps-HW-3/blob/master/outputImages/proxy3.png)
 
